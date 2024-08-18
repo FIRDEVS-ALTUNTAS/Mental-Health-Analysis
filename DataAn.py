@@ -23,22 +23,25 @@ missing_data=df.isnull().sum()
 print(missing_data[missing_data>0])
 print("*********************")
 
+# Filling missing values in the 'self_employed' column
 df["self_employed"].fillna("No",inplace=True)
 print(df.isnull().sum())
 
 
 
-
+# Creating a new column 'Stress_Level' based on 'Days_Indoors'
 df["Stress_Level"]=df["Days_Indoors"].apply(lambda x:"High" if x>"7 days" else "Low" )
 print(df["Stress_Level"].value_counts())
 
 
 sns.set(style="whitegrid")
 
+# Gender distribution visualization
 sns.countplot(x="Gender", data=df)
-plt.title("Cinsiyet Dağılımı")
+plt.title("Gender distribution")
 plt.show()
 
+#Gender vs Stress Level visualization
 plt.figure(figsize=(10,6))
 sns.countplot(data=df,x="Gender", hue="Stress_Level")
 plt.title("Gender vs Stress Level")
@@ -46,7 +49,7 @@ plt.xlabel("Gender")
 plt.ylabel("Count")
 plt.show()
 
-
+# Self-employed vs Mental Health Treatment by Gender
 plt.figure(figsize=(10, 6))
 sns.countplot(data=df, x='self_employed', hue='Gender', palette='Set2', dodge=True)
 plt.title('Self-employed vs Mental Health Treatment by Gender')
