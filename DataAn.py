@@ -1,0 +1,56 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 500)
+
+# Veri setini yükleme
+file_path = "C:/Users/Firdevs/Downloads/analysistry2/Mental Health Dataset.csv"
+df = pd.read_csv(file_path)
+
+print(df.head())
+print(df.tail())
+print(df.dtypes)
+print(df.info())
+print(df["Gender"].value_counts())
+print(df.describe(include="all"))
+print("*********************")
+missing_data=df.isnull().sum()
+print(missing_data[missing_data>0])
+print("*********************")
+
+df["self_employed"].fillna("No",inplace=True)
+print(df.isnull().sum())
+
+
+
+
+df["Stress_Level"]=df["Days_Indoors"].apply(lambda x:"High" if x>"7 days" else "Low" )
+print(df["Stress_Level"].value_counts())
+
+
+sns.set(style="whitegrid")
+
+sns.countplot(x="Gender", data=df)
+plt.title("Cinsiyet Dağılımı")
+plt.show()
+
+plt.figure(figsize=(10,6))
+sns.countplot(data=df,x="Gender", hue="Stress_Level")
+plt.title("Gender vs Stress Level")
+plt.xlabel("Gender")
+plt.ylabel("Count")
+plt.show()
+
+
+plt.figure(figsize=(10, 6))
+sns.countplot(data=df, x='self_employed', hue='Gender', palette='Set2', dodge=True)
+plt.title('Self-employed vs Mental Health Treatment by Gender')
+plt.xlabel('Self-employed Status')
+plt.ylabel('Count')
+plt.legend(title='Gender', loc='upper right')
+plt.show()
+
+
