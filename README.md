@@ -18,3 +18,9 @@ This project analyzes the relationship between self-employment and mental health
 1. Clone this repository.
 2. Ensure you have the required libraries installed (`pip install -r requirements.txt`).
 3. Run the script `DataAn.py` to see the results.
+
+##Key Findings:
+1. The majority of the participants are not self-employed.
+2. Stress levels are higher among participants who spent more than 7 days indoors.
+3. Gender plays a significant role in the distribution of mental health treatment, 
+   with more females seeking treatment than males.
