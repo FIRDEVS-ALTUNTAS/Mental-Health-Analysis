@@ -1,3 +1,4 @@
+# Importing libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -6,10 +7,11 @@ import numpy as np
 pd.set_option("display.max_columns", None)
 pd.set_option("display.width", 500)
 
-# Veri setini yükleme
+# Data loading and overview
 file_path = "C:/Users/Firdevs/Downloads/analysistry2/Mental Health Dataset.csv"
 df = pd.read_csv(file_path)
 
+# Data exploration and cleaning
 print(df.head())
 print(df.tail())
 print(df.dtypes)
